@@ -11,3 +11,4 @@ $ ->
   $btnBack.click ->
     $sectionLogin.show()
     $sectionMain.hide()
+  authController = new AuthController()
