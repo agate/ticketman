@@ -5,8 +5,12 @@
   "description": "A chrome extension for managing github issues",
   "version": "1.0",
 
+  "icons": { "16": "images/ticketman16.png",
+             "48": "images/ticketman48.png",
+             "128": "images/ticketman128.png" },
+
   "browser_action": {
-    "default_icon": "images/icon.png",
+    "default_icon": "images/ticketman19.png",
     "default_popup": "popup.html"
   },
   "permissions": [
