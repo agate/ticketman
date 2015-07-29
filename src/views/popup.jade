@@ -5,25 +5,55 @@ html
     script(src="javascripts/all.min.js")
 
   body
-    include login
+    .section-login
+      include login
 
     .section-main
       button.back Back
 
-      ul.tabs
-        li.issue-type-created
-          ul.repo-list
-            li.repo
+      ul.list-issue-type
+        li.created
+          ul.list-repo
+            li.repo 
+              h2 Scarecrow-rules
               ul.list-issues
                 li.issue
                   .container-issue-details
-                    span.starred star-icon
+                    i.fa.fa-star-o.pull-left.fa-lg
                     h3.issue-title issue title here 
                     span.date 4/13/2015
-                    span.snooze snooze-icon
-            li.repo
-            li.repo
-            li.repo
-        li.issue-type-assigned
-        li.issue-type-mentioned
+                    span.fa.fa-calendar-o
+                li.issue
+                  .container-issue-details
+                    i.fa.fa-star-o.pull-left.fa-lg
+                    h3.issue-title issue title here 
+                    span.date 4/13/2015
+                    span.fa.fa-calendar-o
+                li.issue
+                  .container-issue-details
+                    i.fa.fa-star.pull-left.fa-lg
+                    h3.issue-title issue title here 
+                    span.date 4/13/2015
+                    span.fa.fa-calendar
+            li.repo 
+              h2 Scarecrow
+              ul.list-issues
+                li.issue
+                  .container-issue-details
+                    i.fa.fa-star-o.pull-left.fa-lg
+                    h3.issue-title issue title here 
+                    span.date 4/13/2015
+                    span.fa.fa-calendar-o
+                li.issue
+                  .container-issue-details
+                    i.fa.fa-star-o.pull-left.fa-lg
+                    h3.issue-title issue title here 
+                    span.date 4/13/2015
+                    span.fa.fa-calendar-o
+            li.repo 
+              h2 Stitch
+            li.repo 
+              h2 Hadoop Extraction Workflow
+        li.assigned
+        li.mentioned
         li.starred
