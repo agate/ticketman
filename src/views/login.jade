@@ -1,7 +1,6 @@
-
-.section-login
+.section-login(ng-show="shownPanel == 'login'")
   p Username
   input(name="username")
   p Password
   input(name="password", type="password")
-  button Login
+  button(ng-click="shownPanel = 'main'") Click Me

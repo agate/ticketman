@@ -23,6 +23,7 @@ var PATHS = {
     ],
     lib: [
       'bower_components/jquery/dist/jquery.js',
+      'bower_components/angular/angular.js',
       'bower_components/octokat/dist/octokat.js'
     ],
     dest: 'dest/javascripts'
@@ -31,7 +32,8 @@ var PATHS = {
   styles: {
     sass: 'src/assets/stylesheets',
     lib: [
-      'bower_components/font-awesome/css/font-awesome.css'
+      'bower_components/font-awesome/css/font-awesome.css',
+      'bower_components/angular/angular-csp.css'
     ],
     dest: 'dest/stylesheets'
   },
@@ -68,6 +70,8 @@ gulp.task('scripts', ['clean'], function() {
   .src(PATHS.scripts.src)
   .pipe(coffee())
   .pipe(addsrc.prepend(PATHS.scripts.lib))
+  // .pipe(concat('all.js'))
+  // .pipe(gulp.dest(PATHS.scripts.dest))
   .pipe(uglify())
   .pipe(concat('all.min.js'))
   .pipe(sourcemaps.write())
