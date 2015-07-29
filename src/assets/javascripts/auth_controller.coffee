@@ -1,5 +1,5 @@
 class @AuthController
-  constructor: () ->
+  constructor: (@app) ->
     @initHTML()
     @registerEvents()
 
@@ -8,12 +8,15 @@ class @AuthController
     @$uname = @$root.find('input[name=username]')
     @$pass  = @$root.find('input[name=password]')
     @$login = @$root.find('.login')
+    @$btnLogin = @$root.find('button.login')
 
   registerEvents: () ->
     @$login.click () =>
       uname = @$uname.val()
       pass  = @$pass.val()
       @initOctokat(uname, pass)
+    @$btnLogin.click =>
+      @app.showMain()
 
   initOctokat: (uname, pass) ->
     @octo = new Octokat
@@ -23,7 +26,5 @@ class @AuthController
 
   fetchIssues: (type) ->
     @octo.issues.fetch({ "filter": type })
-      .done (err, results) ->
-        console.log(err, results)
-
-
+      .done (results) ->
+        console.log results
