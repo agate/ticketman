@@ -6,7 +6,7 @@ class @AuthController
   initHTML: () ->
     @$root = $('.section-login')
     @$form  = @$root.find('form')
-    @$uname = @$root.find('input[name=username]')
+    @$uname = @$root.find('input[name=username]').val('vinnie-pepi')
     @$pass  = @$root.find('input[name=password]')
     @$login = @$root.find('.login')
 
@@ -28,5 +28,16 @@ class @AuthController
 
   fetchIssues: (type) ->
     @octo.issues.fetch({ "filter": type })
-      .done (results) ->
-        console.log results
+      .done (results) =>
+        models = []
+        for result in results
+          models.push new IssueModel(
+            id: result.id
+            title: result.title
+            link: result.htmlUrl
+            createdAt: result.createdAt
+            updatedAt: result.updatedAt
+            repo: result.repository.fullName
+          )
+        @coll = new IssueCollection(models)
+            

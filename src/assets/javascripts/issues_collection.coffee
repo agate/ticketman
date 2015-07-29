@@ -1,1 +1,0 @@
-@Issue = Backbone.Model.extend
