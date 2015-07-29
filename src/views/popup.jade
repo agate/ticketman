@@ -1,15 +1,14 @@
 doctype html
-html(ng-app ng-csp)
+html
   head
     link(rel="stylesheet" href="stylesheets/all.min.css")
     script(src="javascripts/all.min.js")
 
   body
-    div(ng-init="shownPanel = 'login'")
-
     include login
-    .section-main(ng-show="shownPanel == 'main'")
-      strong.message Main Panel
+
+    .section-main
+      button.back Back
 
       ul.tabs
         li.issue-type-created

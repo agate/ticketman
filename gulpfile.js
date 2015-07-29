@@ -23,7 +23,7 @@ var PATHS = {
     ],
     lib: [
       'bower_components/jquery/dist/jquery.js',
-      'bower_components/angular/angular.js',
+      // 'bower_components/angular/angular.js',
       'bower_components/octokat/dist/octokat.js'
     ],
     dest: 'dest/javascripts'
@@ -33,7 +33,7 @@ var PATHS = {
     sass: 'src/assets/stylesheets',
     lib: [
       'bower_components/font-awesome/css/font-awesome.css',
-      'bower_components/angular/angular-csp.css'
+      // 'bower_components/angular/angular-csp.css'
     ],
     dest: 'dest/stylesheets'
   },
