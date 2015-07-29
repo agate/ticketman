@@ -39,8 +39,10 @@ var PATHS = {
   },
 
   fonts: {
-    lib: [
-      'bower_components/font-awesome/fonts/*'
+    src: [
+      'bower_components/font-awesome/fonts/*',
+      'src/assets/fonts/*'
+      
     ],
     dest: 'dest/fonts'
   },
@@ -96,7 +98,7 @@ gulp.task('images', ['clean'], function() {
 
 gulp.task('fonts', function() {
   return gulp
-  .src(PATHS.fonts.lib)
+  .src(PATHS.fonts.src)
   .pipe(gulp.dest(PATHS.fonts.dest));
 });
 
