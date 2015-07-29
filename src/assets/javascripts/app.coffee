@@ -18,3 +18,10 @@ class @App
     @$sectionLogin.show()
     @$sectionMain.hide()
 
+  onLogin: (octo) ->
+    @coll = new IssueCollection [], { octo: octo }
+    @coll.fetch('assigned')
+    @coll.on 'update', () =>
+      @showMain()
+    window.coll = @coll
+
