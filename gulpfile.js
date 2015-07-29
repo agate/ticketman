@@ -27,6 +27,7 @@ var PATHS = {
       'bower_components/backbone/backbone.js',
       'bower_components/octokat/dist/octokat.js'
     ],
+    background: 'src/background.coffee',
     dest: 'dest/javascripts'
   },
 
@@ -111,6 +112,16 @@ gulp.task('views', function() {
   .pipe(gulp.dest(PATHS.views.dest));
 });
 
+gulp.task('background', function() {
+  return gulp
+  .src(PATHS.scripts.background)
+  .pipe(coffee())
+  // .pipe(uglify())
+  .pipe(concat('background.min.js'))
+  .pipe(sourcemaps.write())
+  .pipe(gulp.dest(PATHS.scripts.dest));
+});
+
 gulp.task('manifest', function() {
   return gulp
   .src(PATHS.manifest.src)
@@ -122,6 +133,7 @@ gulp.task('watch', function() {
   gulp.watch(PATHS.manifest.src, ['manifest']);
   gulp.watch(PATHS.images.src, ['images']);
   gulp.watch(PATHS.scripts.src, ['scripts']);
+  gulp.watch(PATHS.scripts.background, ['background']);
   gulp.watch(PATHS.styles.sass + '/**/*', ['styles']);
   gulp.watch(PATHS.views.src, ['views']);
 });
@@ -130,6 +142,7 @@ gulp.task('watch', function() {
 gulp.task('default', [
   'watch',
   'manifest',
+  'background',
   'images',
   'fonts',
   'scripts',

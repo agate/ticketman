@@ -8,7 +8,13 @@ html
     button.notifyme Click Me To Show Up A Notification
 
     .section-login
-      include login
+      form.login-form
+        p Username
+        input(name="username")
+        p Password
+        input(name="password", type="password")
+        br
+        button.login Click Me
 
     .section-loading
       .loader-54

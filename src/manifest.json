@@ -13,8 +13,12 @@
     "default_icon": "images/ticketman19.png",
     "default_popup": "popup.html"
   },
+  "background": {
+    "scripts": ["javascripts/background.min.js"]
+  },
   "permissions": [
     "storage",
-    "notifications"
+    "notifications",
+    "background"
   ]
 }
