@@ -22,15 +22,25 @@ var PATHS = {
       'src/assets/javascripts/*.coffee'
     ],
     lib: [
-      'bower_components/oktokat/dist/oktokat.js'
+      'bower_components/jquery/dist/jquery.js',
+      'bower_components/octokat/dist/octokat.js'
     ],
     dest: 'dest/javascripts'
   },
 
   styles: {
     sass: 'src/assets/stylesheets',
-    lib: [],
+    lib: [
+      'bower_components/font-awesome/css/font-awesome.css'
+    ],
     dest: 'dest/stylesheets'
+  },
+
+  fonts: {
+    lib: [
+      'bower_components/font-awesome/fonts/*'
+    ],
+    dest: 'dest/fonts'
   },
 
   views: {
@@ -76,36 +86,49 @@ gulp.task('styles', function() {
 
 // Copy all static images
 gulp.task('images', ['clean'], function() {
-  return gulp.src(PATHS.images.src)
-  // Pass in options to the task
-  .pipe(imagemin({optimizationLevel: 5}))
+  return gulp
+  .src(PATHS.images.src)
+  .pipe(imagemin({optimizationLevel: 5})) // Pass in options to the task
   .pipe(gulp.dest(PATHS.images.dest));
+});
+
+gulp.task('fonts', function() {
+  return gulp
+  .src(PATHS.fonts.lib)
+  .pipe(gulp.dest(PATHS.fonts.dest));
 });
 
 gulp.task('views', function() {
   var YOUR_LOCALS = {};
 
-  return gulp.src(PATHS.views.src)
+  return gulp
+  .src(PATHS.views.src)
   .pipe(jade({ locals: YOUR_LOCALS }))
   .pipe(gulp.dest(PATHS.views.dest));
 });
 
-
 gulp.task('manifest', function() {
-  return gulp.src(PATHS.manifest.src)
+  return gulp
+  .src(PATHS.manifest.src)
   .pipe(gulp.dest(PATHS.manifest.dest));
 });
 
-
-
 // Rerun the task when a file changes
 gulp.task('watch', function() {
+  gulp.watch(PATHS.manifest.src, ['manifest']);
+  gulp.watch(PATHS.images.src, ['images']);
   gulp.watch(PATHS.scripts.src, ['scripts']);
   gulp.watch(PATHS.styles.sass + '/**/*', ['styles']);
-  gulp.watch(PATHS.images.src, ['images']);
   gulp.watch(PATHS.views.src, ['views']);
-  gulp.watch(PATHS.manifest.src, ['manifest']);
 });
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('default', ['watch', 'scripts', 'styles', 'images', 'views', 'manifest']);
+gulp.task('default', [
+  'watch',
+  'manifest',
+  'images',
+  'fonts',
+  'scripts',
+  'styles',
+  'views',
+]);
