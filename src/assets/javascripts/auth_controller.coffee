@@ -5,20 +5,22 @@ class @AuthController
 
   initHTML: () ->
     @$root = $('.section-login')
+    @$form  = @$root.find('form')
     @$uname = @$root.find('input[name=username]')
     @$pass  = @$root.find('input[name=password]')
     @$login = @$root.find('.login')
-    @$btnLogin = @$root.find('button.login')
 
   registerEvents: () ->
-    @$login.click () =>
-      uname = @$uname.val()
-      pass  = @$pass.val()
-      @initOctokat(uname, pass)
-    @$btnLogin.click =>
+    @$form.submit (e) =>
+      e.preventDefault()
+    @$login.click (e) =>
+      e.preventDefault()
+      @initOctokat()
       @app.showMain()
 
   initOctokat: (uname, pass) ->
+    uname = @$uname.val()
+    pass  = @$pass.val()
     @octo = new Octokat
       username: uname
       password: pass

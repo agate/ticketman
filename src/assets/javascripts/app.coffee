@@ -9,8 +9,10 @@ class @App
       @showLogin()
     
   showMain: () ->
-    $sectionLogin.hide()
-    $sectionMain.show()
+    @$sectionLogin.hide()
+    @$sectionMain.show()
+
+  showLoading: () ->
 
   showLogin: () ->
     @$sectionLogin.show()
