@@ -21,7 +21,9 @@ var PATHS = {
     src: [
       'src/assets/javascripts/*.coffee'
     ],
-    lib: [],
+    lib: [
+      'bower_components/oktokat/dist/oktokat.js'
+    ],
     dest: 'dest/javascripts'
   },
 
