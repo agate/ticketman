@@ -23,6 +23,7 @@ var PATHS = {
     ],
     lib: [
       'bower_components/jquery/dist/jquery.js',
+      'bower_components/underscore/underscore.js',
       'bower_components/backbone/backbone.js',
       'bower_components/octokat/dist/octokat.js'
     ],
@@ -69,9 +70,7 @@ gulp.task('scripts', ['clean'], function() {
   .src(PATHS.scripts.src)
   .pipe(coffee())
   .pipe(addsrc.prepend(PATHS.scripts.lib))
-  // .pipe(concat('all.js'))
-  // .pipe(gulp.dest(PATHS.scripts.dest))
-  .pipe(uglify())
+  // .pipe(uglify())
   .pipe(concat('all.min.js'))
   .pipe(sourcemaps.write())
   .pipe(gulp.dest(PATHS.scripts.dest));
@@ -81,7 +80,7 @@ gulp.task('styles', function() {
   return sass(PATHS.styles.sass, {style: 'expanded', sourcemap: true})
   .pipe(addsrc.prepend(PATHS.styles.lib))
   .pipe(autoprefixer('last 2 version'))
-  .pipe(minifycss())
+  // .pipe(minifycss())
   .pipe(concat('all.min.css'))
   .pipe(sourcemaps.write())
   .pipe(gulp.dest(PATHS.styles.dest));
