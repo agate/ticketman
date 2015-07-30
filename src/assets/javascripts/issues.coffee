@@ -15,14 +15,17 @@
 
 @IssueCollection = Backbone.Collection.extend
   initialize: (models, options) ->
+    console.log(options)
     if options.octo? then @octo = options.octo
     Backbone.Collection.prototype.initialize.call(@, models, options)
 
   model: IssueModel
 
   fetch: (type) ->
-    @octo.issues.fetch({ "filter": type })
-      .done (results) =>
+    @octo
+      .issues
+      .fetch({ "filter": type })
+      .then (results) =>
         models = []
         for result in results
           models.push new IssueModel

@@ -25,7 +25,8 @@ class @AuthController
   initOctokat: (uname, pass) ->
     uname = @$uname.val()
     pass  = @$pass.val()
-    octo = new Octokat
+    chrome.extension.getBackgroundPage().initOctokat(
       username: uname
       password: pass
-    @app.onLogin octo
+    )
+    @app.onLogin()

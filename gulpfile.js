@@ -25,9 +25,14 @@ var PATHS = {
       'bower_components/jquery/dist/jquery.js',
       'bower_components/underscore/underscore.js',
       'bower_components/backbone/backbone.js',
-      'bower_components/octokat/dist/octokat.js'
+      'bower_components/octokat/dist/octokat.js',
+      'lib/javascripts/backbone.chromestorage.js',
+      'lib/javascripts/backbone.localstorage.js',
     ],
     background: 'src/background.coffee',
+    backgroundlib: [
+      'bower_components/octokat/dist/octokat.js',
+    ],
     dest: 'dest/javascripts'
   },
 
@@ -116,6 +121,7 @@ gulp.task('background', function() {
   return gulp
   .src(PATHS.scripts.background)
   .pipe(coffee())
+  .pipe(addsrc.prepend(PATHS.scripts.backgroundlib))
   // .pipe(uglify())
   .pipe(concat('background.min.js'))
   .pipe(sourcemaps.write())

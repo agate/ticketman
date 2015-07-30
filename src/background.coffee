@@ -1,7 +1,11 @@
 notifications = {}
+@octo = null
 
 @notify = (opts) ->
   notifications[Date.now()] = opts
+
+@initOctokat = (params) =>
+  @octo = new Octokat(params)
 
 showNotification = (title, message) ->
   id = "ticketman-notification-#{Date.now()}"
