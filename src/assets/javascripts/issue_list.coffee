@@ -1,11 +1,21 @@
 class @IssueItem
-  TMPL = jade.compile """
+  JADE_TMPL = jade.compile """
     span.issue-star.fa.fa-lg(class="fa-star-o")
     h3.issue-title= title
     .container-issue-details
       .container-right.pull-right
         span.date= date 
         span.fa.fa-calendar-o
+  """
+  TMPL = _.template """
+    <span class="issue-star fa fa-lg <%= starType %>" />
+    <h3 class="issue-title"><%= title %></h3>
+    <div class="container-issue-details">
+      <div class="container-right pull-right">
+        <span class="date"><%= date %></span>
+        <span class="fa fa-calendar-o" />
+      </div>
+    </div>
   """
 
   constructor: (@$root, @model) ->
@@ -33,9 +43,11 @@ class @IssueItem
         @star($star)
 
   render: () ->
+    starType = if @model.get('star') then 'fa-star' else 'fa-star-o'
     locals =
       title: @model.get('title')
       date: @dateDisplay()
+      starType: starType
     $html = $(TMPL(locals))
     @attachEvents($html)
     @$root.append $html
@@ -44,15 +56,18 @@ class @IssueItem
 
 class @IssueList
   ISSUE_TYPE = 'assigned'
-  TMPL = jade.compile """
-    ul.list-repo
-      li.repo 
-        h2= repoName
-        ul.list-issues
+
+  TMPL = _.template """
+    <ul class="list-repo">
+      <li class="repo">
+        <h2><%= repoName %></h2>
+        <ul class="list-issues">
+        </ul>
+      </li>
+    </ul>
   """
 
   constructor: (@$root, @collection) ->
-
 
   render: () ->
     grouped = @collection.groupBy('repo')
@@ -66,5 +81,3 @@ class @IssueList
         issueItem = new IssueItem($issueListRoot, model)
         issueItem.render()
         
-        
-    
