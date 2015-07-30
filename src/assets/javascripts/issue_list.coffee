@@ -39,12 +39,6 @@ class @IssueItem
     $star = $html.find('.issue-star')
     $notif = $html.find('.issue-notif')
 
-    @model.once 'initialized', (id) =>
-      if (@model.get('starred'))
-        @star($star)
-      else
-        @unstar($star)
-
     $star.click () =>
       if (@model.get('starred'))
         @unstar($star)
@@ -57,7 +51,7 @@ class @IssueItem
       @nc.open(@model.getStringId())
 
   render: () ->
-    starType = if @model.get('star') then 'fa-star' else 'fa-star-o'
+    starType = if @model.get('starred') then 'fa-star' else 'fa-star-o'
     locals =
       title: @model.get('title')
       date: @dateDisplay()
@@ -65,6 +59,30 @@ class @IssueItem
     $html = $(tmplFn TMPL, locals)
     @attachEvents($html)
     @$root.append $html
+
+class @StarredList
+  TMPL = """
+    <ul class="list-starred">
+      <li class="repo">
+        <ul class="list-issues">
+        </ul>
+      </li>
+    </ul>
+  """
+  constructor: (@$root, @collection, @nc) ->
+
+  render: () ->
+    coll = @collection.where({ starred: true })
+
+    $html = $(tmplFn TMPL, {})
+    $issueListRoot = $html.find('.list-issues')
+    @$root.append $html
+
+    for starred in coll
+      model = @collection.findWhere({ id: starred.id })
+      issueItem = new IssueItem($issueListRoot, model, @nc)
+      issueItem.render()
+
 
 class @IssueList
   ISSUE_TYPE = 'assigned'
@@ -82,6 +100,7 @@ class @IssueList
   constructor: (@$root, @collection, @nc) ->
 
   render: () ->
+    console.log @collection
     grouped = @collection.groupBy('repo')
     for repo, items of grouped
       $html = $(tmplFn TMPL, { repoName: repo })

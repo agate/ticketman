@@ -38,13 +38,26 @@
       .issues
       .fetch({ "filter": type })
       .then (results) =>
+        count = results.length
         models = []
+
+        onload = (count) =>
+          if (count <= 0)
+            @add(models)
+            @trigger('loaded')
+
         for result in results
-          models.push new IssueModel
+          issueModel = new IssueModel
             id: result.id
             title: result.title
             link: result.htmlUrl
             createdAt: result.createdAt
             updatedAt: result.updatedAt
             repo: result.repository.fullName
-        @add(models)
+
+          models.push issueModel
+          issueModel.on 'initialized', () ->
+            onload(--count)
+
+        
+

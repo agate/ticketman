@@ -2,6 +2,7 @@ class @App
   constructor: () ->
     @initHTML()
     @authController = new AuthController(@)
+    @registerEvents()
     
   initHTML: () ->
     @$sectionLogin = $('.section-login')
@@ -17,6 +18,12 @@ class @App
       @onLogin()
     else
       @showLogin()
+
+  registerEvents: () ->
+    @$sectionMain.find('.tab-assigned').click (e) =>
+      @activateTab('assigned')
+    @$sectionMain.find('.tab-starred').click (e) =>
+      @activateTab('starred')
 
   octo: () ->
     chrome.extension.getBackgroundPage().octo
@@ -41,13 +48,24 @@ class @App
     @$screens.hide()
     @$sectionLoad.show()
 
+  activateTab: (tabname) ->
+    @$tabSections.hide()
+    if tabname == 'starred'
+      $active = @$tabSections.filter('.starred').show()
+      list = new StarredList($active, @assignedIssues, @notificationController)
+      list.render()
+    else
+      $active = @$tabSections.filter(".#{tabname}").show()
+    return $active
+
   onLogin: () ->
     @notificationController = new NotificationController(@$sectionNotif, @)
     @assignedIssues = new IssueCollection [], { octo: @octo() }
     @assignedIssues.fetch('assigned')
 
-    @assignedIssues.on 'update', () =>
-      $assigned = @$tabSections.filter('.assigned').show()
+    @assignedIssues.on 'loaded', () =>
+      $assigned = @activateTab('assigned')
       list = new IssueList($assigned, @assignedIssues, @notificationController)
       list.render()
       @showMain()
+
