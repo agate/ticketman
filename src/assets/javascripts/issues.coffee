@@ -3,11 +3,24 @@
     "starred": false
     "reminder": false
   }
+  initialize: () ->
+    Storage.get @getStringId(), (result) =>
+      id = @getStringId()
+      if result[id]? and result[id].starred?
+        @set('starred', result[id].starred)
+      console.log id
+      @trigger('initialized', id)
+
+  getStringId: () ->
+    return @id.toString()
+
   star: () ->
     @set { 'starred': true }
+    Storage.set(@getStringId(), { starred: true })
 
   unstar: () ->
     @set { 'starred': false }
+    Storage.set(@getStringId(), { starred: false })
 
   setReminder: (time) ->
 
@@ -17,6 +30,7 @@
   initialize: (models, options) ->
     console.log(options)
     if options.octo? then @octo = options.octo
+    
     Backbone.Collection.prototype.initialize.call(@, models, options)
 
   model: IssueModel

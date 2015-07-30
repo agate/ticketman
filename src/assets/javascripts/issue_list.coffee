@@ -30,20 +30,28 @@ class @IssueItem
   star: ($star) ->
     $star.removeClass('fa-star-o')
       .addClass('fa-star')
-    @model.star()
 
   unstar: ($star) ->
     $star.addClass('fa-star-o')
       .removeClass('fa-star')
-    @model.unstar()
 
   attachEvents: ($html) ->
-    $star = $html.filter('.issue-star')
+    $star = $html.find('.issue-star')
+
+    @model.once 'initialized', (id) =>
+      console.log(id)
+      if (@model.get('starred'))
+        @star($star)
+      else
+        @unstar($star)
+
     $star.click () =>
       if (@model.get('starred'))
         @unstar($star)
+        @model.unstar()
       else
         @star($star)
+        @model.star()
 
   render: () ->
     starType = if @model.get('star') then 'fa-star' else 'fa-star-o'
@@ -54,8 +62,6 @@ class @IssueItem
     $html = $(tmplFn TMPL, locals)
     @attachEvents($html)
     @$root.append $html
-    
-
 
 class @IssueList
   ISSUE_TYPE = 'assigned'
@@ -74,7 +80,6 @@ class @IssueList
 
   render: () ->
     grouped = @collection.groupBy('repo')
-    window.coll = @collection
     for repo, items of grouped
       $html = $(tmplFn TMPL, { repoName: repo })
       $issueListRoot = $html.find('.list-issues')
