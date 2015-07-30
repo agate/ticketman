@@ -1,8 +1,3 @@
-if chrome.storage
-  storageStrategy = new Backbone.ChromeStorage("IssueCollection", "sync")
-else
-  storageStrategy = new Backbone.LocalStorage("IssueCollection")
-
 @IssueModel = Backbone.Model.extend
   defaults: {
     "starred": false

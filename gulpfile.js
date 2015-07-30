@@ -24,10 +24,7 @@ var PATHS = {
     lib: [
       'bower_components/jquery/dist/jquery.js',
       'bower_components/underscore/underscore.js',
-      'lib/javascripts/jade.js',
       'bower_components/backbone/backbone.js',
-      'lib/javascripts/backbone.chromestorage.js',
-      'lib/javascripts/backbone.localstorage.js',
       'bower_components/octokat/dist/octokat.js'
     ],
     background: 'src/background.coffee',
