@@ -22,6 +22,7 @@ class @App
     # @$sectionMain.hide()
 
   showNotifications: () ->
+    console.log 'show not'
     @$screens.hide()
     @$sectionNotif.show()
 
@@ -35,7 +36,6 @@ class @App
     @$sectionLoad.show()
 
   onLogin: () ->
-
     @notificationController = new NotificationController(@$sectionNotif, @)
     @assignedIssues = new IssueCollection [], { octo: @octo() }
     @assignedIssues.fetch('assigned')

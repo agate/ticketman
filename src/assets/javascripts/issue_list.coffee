@@ -40,7 +40,6 @@ class @IssueItem
     $notif = $html.find('.issue-notif')
 
     @model.once 'initialized', (id) =>
-      console.log(id)
       if (@model.get('starred'))
         @star($star)
       else
@@ -53,7 +52,7 @@ class @IssueItem
       else
         @star($star)
         @model.star()
-    console.log $notif
+
     $notif.click () =>
       @nc.open(@model.getStringId())
 
