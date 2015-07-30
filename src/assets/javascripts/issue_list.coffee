@@ -10,10 +10,14 @@ class @IssueItem
 
   constructor: (@$root, @model) ->
 
+  dateDisplay: () ->
+    d = new Date(@model.get('createdAt'))
+    return d.toLocaleDateString()
+
   render: () ->
     locals =
       title: @model.get('title')
-      date: @model.get('createdAt')
+      date: @dateDisplay()
     @$root.append TMPL(locals)
     
 
