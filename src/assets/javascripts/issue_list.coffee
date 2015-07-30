@@ -9,14 +9,16 @@ tmplFn = (str, obj) ->
 
 class @IssueItem
   TMPL = """
-    <span class="issue-star fa fa-lg <%= starType %>" />
-    <h3 class="issue-title"><%= title %></h3>
-    <div class="container-issue-details">
-      <div class="container-right pull-right">
-        <span class="date"><%= date %></span>
-        <span class="fa fa-calendar-o" />
+    <li class="issue">
+      <span class="issue-star fa fa-lg <%= starType %>" />
+      <h3 class="issue-title"><%= title %></h3>
+      <div class="container-issue-details">
+        <div class="container-right pull-right">
+          <span class="date"><%= date %></span>
+          <span class="fa fa-calendar-o" />
+        </div>
       </div>
-    </div>
+    </li>
   """
 
   constructor: (@$root, @model) ->
