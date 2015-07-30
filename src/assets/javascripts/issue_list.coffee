@@ -1,6 +1,6 @@
 class @IssueItem
   TMPL = jade.compile """
-    i.fa.fa-star-o.fa-lg
+    i.issue-star.fa.fa-lg(class="fa-star-o")
     h3.issue-title= title
     .container-issue-details
       .container-right.pull-right
@@ -14,11 +14,15 @@ class @IssueItem
     d = new Date(@model.get('createdAt'))
     return d.toLocaleDateString()
 
+  attachEvents: ($html) ->
+
   render: () ->
     locals =
       title: @model.get('title')
       date: @dateDisplay()
-    @$root.append TMPL(locals)
+    $html = $(TMPL(locals))
+    attachEvents($html)
+    @$root.append $html
     
 
 
