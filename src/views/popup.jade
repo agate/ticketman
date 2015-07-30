@@ -8,17 +8,7 @@ html
     button.notifyme Click Me To Show Up A Notification
 
     .section-login
-      form.login-form
-        h1 TICKETMAN
-        .form-field
-          label.fa.fa-user
-          input.form-input.input-username(name="username", placeholder="username")
-        .form-field
-          label.fa.fa-lock
-          input.form-input.input-password(name="password", type="password", placeholder="password")
-        .form-field
-          label.fa.fa-github
-          input.btn.btn-login(type="submit", value="Login")
+      include login
 
     .section-loading
       .loader-54
@@ -33,49 +23,3 @@ html
         div.tab-section.assigned
         div.tab-section.mentioned
         div.tab-section.starred
-          ul.list-repo
-            li.repo 
-              h2 Scarecrow-rules
-              ul.list-issues
-                li.issue
-                  i.fa.fa-star-o.fa-lg
-                  h3.issue-title CA - name canonicalizing improvements
-                  .container-issue-details
-                    .container-right.pull-right
-                      span.date 4/13/2015
-                      span.fa.fa-calendar-o
-                li.issue
-                  i.fa.fa-star-o.fa-lg
-                  h3.issue-title Website datatype extracting
-                  .container-issue-details
-                    .container-right.pull-right
-                      span.date 4/13/2015
-                      span.fa.fa-calendar-o
-                li.issue
-                  i.fa.fa-star.fa-lg
-                  h3.issue-title Crosswalk inline datatypes
-                  .container-issue-details
-                    .container-right.pull-right
-                      span.date 4/13/2015
-                      span.fa.fa-calendar
-            li.repo 
-              h2 Scarecrow
-              ul.list-issues
-                li.issue
-                  i.fa.fa-star-o.fa-lg
-                  h3.issue-title issue Improve Grammar
-                  .container-issue-details
-                    .container-right.pull-right
-                      span.date 4/13/2015
-                      span.fa.fa-calendar-o
-                li.issue
-                  i.fa.fa-star-o.fa-lg
-                  h3.issue-title Add color to Extractions Logging CLI
-                  .container-issue-details
-                    .container-right.pull-right
-                      span.date 4/13/2015
-                      span.fa.fa-calendar-o
-            li.repo 
-              h2 Stitch
-            li.repo 
-              h2 Hadoop Extraction Workflow

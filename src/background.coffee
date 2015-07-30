@@ -6,6 +6,7 @@ notifications = {}
 
 @clearOctokat = =>
   @octo = null
+
 @initOctokat = (params) =>
   @octo = new Octokat(params)
 
