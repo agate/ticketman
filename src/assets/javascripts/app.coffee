@@ -16,18 +16,13 @@ class @App
   octo: () ->
     chrome.extension.getBackgroundPage().octo
 
+  getDim: () ->
+    console.log window
   showLogin: () ->
     @$screens.hide()
     @$sectionLogin.show()
-    # @$sectionMain.hide()
-
-  showNotifications: () ->
-    console.log 'show not'
-    @$screens.hide()
-    @$sectionNotif.show()
 
   showMain: () ->
-    # @$sectionLogin.hide()
     @$screens.hide()
     @$sectionMain.show()
 
