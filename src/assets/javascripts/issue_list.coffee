@@ -1,6 +1,6 @@
 class @IssueItem
   TMPL = jade.compile """
-    i.issue-star.fa.fa-lg(class="fa-star-o")
+    span.issue-star.fa.fa-lg(class="fa-star-o")
     h3.issue-title= title
     .container-issue-details
       .container-right.pull-right
@@ -11,17 +11,33 @@ class @IssueItem
   constructor: (@$root, @model) ->
 
   dateDisplay: () ->
-    d = new Date(@model.get('createdAt'))
+    d = new Date @model.get('createdAt')
     return d.toLocaleDateString()
 
+  star: ($star) ->
+    $star.removeClass('fa-star-o')
+      .addClass('fa-star')
+    @model.star()
+
+  unstar: ($star) ->
+    $star.addClass('fa-star-o')
+      .removeClass('fa-star')
+    @model.unstar()
+
   attachEvents: ($html) ->
+    $star = $html.filter('.issue-star')
+    $star.click () =>
+      if (@model.get('starred'))
+        @unstar($star)
+      else
+        @star($star)
 
   render: () ->
     locals =
       title: @model.get('title')
       date: @dateDisplay()
     $html = $(TMPL(locals))
-    attachEvents($html)
+    @attachEvents($html)
     @$root.append $html
     
 

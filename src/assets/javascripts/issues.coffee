@@ -4,9 +4,15 @@ else
   storageStrategy = new Backbone.LocalStorage("IssueCollection")
 
 @IssueModel = Backbone.Model.extend
-  star:() ->
+  defaults: {
+    "starred": false
+    "reminder": false
+  }
+  star: () ->
+    @set { 'starred': true }
 
   unstar: () ->
+    @set { 'starred': false }
 
   setReminder: (time) ->
 
