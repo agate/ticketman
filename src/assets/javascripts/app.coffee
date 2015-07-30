@@ -12,7 +12,11 @@ class @App
     @$screenModal  = $('.screen-modal')
     @$tabSections  = $('.tab-section')
 
-    if @octo() then @onLogin() else @showLogin()
+    if @octo()
+      @showLoading()
+      @onLogin()
+    else
+      @showLogin()
 
   octo: () ->
     chrome.extension.getBackgroundPage().octo

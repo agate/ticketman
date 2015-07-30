@@ -1,14 +1,18 @@
-header
-  Set Notification
-.notif-option
-  input(type="radio", name="notification-time", value="later")
-  span Later Today
-.notif-option
-  input(type="radio", name="notification-time", value="later")
-  span Tomorrow
-.notif-option
-  input(type="radio", name="notification-time", value="later")
-  span Later thiw Week
-.notif-actions
-  button.btn Cancel
-  button.btn Set Alert
+.notification
+  header
+    Set Notification
+  .notif-option
+    label
+      input(type="radio", name="notification-time", value="later-today")
+      span Later Today
+  .notif-option
+    label
+      input(type="radio", name="notification-time", value="tomorrow")
+      span Tomorrow
+  .notif-option
+    label
+      input(type="radio", name="notification-time", value="later-this-week")
+      span Later thiw Week
+  .notif-actions
+    button.btn.cancel Cancel
+    button.btn.set Set Alert

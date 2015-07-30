@@ -29,7 +29,10 @@ var PATHS = {
       'lib/javascripts/backbone.chromestorage.js',
       'lib/javascripts/backbone.localstorage.js',
     ],
-    background: 'src/background.coffee',
+    background: [
+      'src/assets/javascripts/storage.coffee',
+      'src/background.coffee',
+    ],
     backgroundlib: [
       'bower_components/octokat/dist/octokat.js',
     ],

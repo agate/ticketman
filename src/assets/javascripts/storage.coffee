@@ -1,4 +1,3 @@
-
 @Storage =
   isChrome: (typeof chrome.storage) != 'undefined'
 
@@ -11,5 +10,4 @@
   set: (id, payload) ->
     obj = {}
     obj[id] = payload
-    console.log obj
     Storage.storage.set obj

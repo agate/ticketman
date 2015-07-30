@@ -1,14 +1,26 @@
-notifications = {}
 @octo = null
-
-@notify = (opts) ->
-  notifications[Date.now()] = opts
 
 @clearOctokat = =>
   @octo = null
 
 @initOctokat = (params) =>
   @octo = new Octokat(params)
+
+@appendNotification = (id, timestamp, title, message, cb) ->
+  getNotifications (notifications) ->
+    notifications[id] =
+      timestamp: timestamp,
+      title: title
+      message: message
+    setNotifications(notifications)
+    cb()
+
+setNotifications = (notifications) ->
+  @Storage.set 'notifications', notifications
+getNotifications = (cb) ->
+  @Storage.get 'notifications', (res) ->
+    notifications = res.notifications || {}
+    cb(notifications)
 
 showNotification = (title, message) ->
   id = "ticketman-notification-#{Date.now()}"
@@ -21,9 +33,11 @@ showNotification = (title, message) ->
     console.log('shown :D')
 
 setInterval ->
-  now = Date.now()
-  for id, notification of notifications
-    if now > notification.at
-      showNotification(notification.title, notification.message)
-      delete notifications[id]
+  getNotifications (notifications) ->
+    now = Date.now()
+    for id, notification of notifications
+      if now > notification.timestamp
+        showNotification(notification.title, notification.message)
+        delete notifications[id]
+    setNotifications(notifications)
 , 1000
