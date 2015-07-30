@@ -9,12 +9,14 @@ html
 
     .section-login
       form.login-form
-        p Username
-        input(name="username")
-        p Password
-        input(name="password", type="password")
-        br
-        button.btn.login Login
+        .form-field
+          label.fa.fa-user
+          input.form-input.input-username(name="username")
+        .form-field
+          label.fa.fa-lock
+          input.form-input.input-password(name="password", type="password")
+        .form-field
+          button.btn.btn-login Login
 
     .section-loading
       .loader-54

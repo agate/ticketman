@@ -7,6 +7,52 @@ body
   font-family: 'Open Sans', Arial, sans-serif
   margin: 0
 
+// Login page styles
+
+.section-login
+  margin: 20px auto 0
+  width: 205px
+
+.section-login .form-input
+  font: normal normal normal 14px/1 'Open Sans'
+
+label, .form-input
+  border: 1px solid #BABABA
+  font-size: 16px
+
+label
+  background-color: #DEDEDE
+  border-right: none
+  border-top-left-radius: 2px
+  border-bottom-left-radius: 2px
+  padding: 12px
+
+.form-input
+  border-top-right-radius: 2px
+  border-bottom-right-radius: 2px
+  margin-bottom: 12px
+  padding: 9.5px
+
+.btn
+  border: 2px solid #46b98a
+  background-color: white
+  font-weight: bold
+  color: #46b98a
+  border-radius: 2px 2px 2px 2px
+  cursor: pointer
+  display: inline-block
+  font-size: 12px
+  padding: 7px 10px
+  transition: all 0.3s ease 0s
+  -moz-transition: all 0.3s ease 0s
+  -webkit-transition: all 0.3s ease 0s
+
+.btn-login:hover
+  background-color: #46b98a
+  color: white
+
+// Issues page styles
+
 ul
   list-style-type: none
   padding: 10px 0
@@ -33,27 +79,6 @@ h2, h3
   color: DimGrey
   font-weight: normal
 
-.btn
-  border: 0 none
-  border-radius: 2px 2px 2px 2px
-  color: #FFFFFF
-  cursor: pointer
-  display: inline-block
-  font-size: 12px
-  line-height: 20px
-  margin-bottom: 0
-  margin-top: 10px
-  padding: 7px 10px
-  text-transform: none
-  transition: all 0.3s ease 0s
-  -moz-transition: all 0.3s ease 0s
-  -webkit-transition: all 0.3s ease 0s
-  text-align: center
-
-.login
-  background: none repeat scroll 0 0 #616161
-.login:hover
-  background: none repeat scroll 0 0 #46b98a
 
 // Awesome font icon styles
 .fa-star-o, .fa-calendar-o
@@ -70,6 +95,6 @@ h2, h3
 
 .fa-calendar
   color: MediumSeaGreen
-.tab-section
-  display: none
 
+.tab-section, .notifyme, .back
+  display: none
