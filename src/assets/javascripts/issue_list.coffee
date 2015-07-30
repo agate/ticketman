@@ -11,7 +11,11 @@ class @IssueItem
   TMPL = """
     <li class="issue">
       <span class="issue-star fa fa-lg <%= starType %>" />
-      <h3 class="issue-title"><%= title %></h3>
+      <h3 class="issue-title">
+        <a href="<%= link %>" target="_blank">
+          <%= title %>
+        </a>
+      </h3>
       <div class="container-issue-details">
         <div class="container-right pull-right">
           <span class="date"><%= date %></span>
