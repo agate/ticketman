@@ -1,12 +1,4 @@
 class @IssueItem
-  JADE_TMPL = jade.compile """
-    span.issue-star.fa.fa-lg(class="fa-star-o")
-    h3.issue-title= title
-    .container-issue-details
-      .container-right.pull-right
-        span.date= date 
-        span.fa.fa-calendar-o
-  """
   TMPL = _.template """
     <span class="issue-star fa fa-lg <%= starType %>" />
     <h3 class="issue-title"><%= title %></h3>
