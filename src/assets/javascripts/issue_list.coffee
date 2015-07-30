@@ -48,7 +48,7 @@ class @IssueItem
         @model.star()
 
     $notif.click () =>
-      @nc.open(@model.getStringId())
+      @nc.open(@model)
 
   render: () ->
     starType = if @model.get('starred') then 'fa-star' else 'fa-star-o'

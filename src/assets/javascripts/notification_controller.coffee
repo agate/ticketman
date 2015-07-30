@@ -5,15 +5,17 @@ class @NotificationController
 
   initHTML: ->
     @$btnCancel = @$root.find('.btn.cancel')
-    @$btnSet = @$root.find('.btn.set')
+    @$btnSet = @$root.find('.notif-option')
 
   registerEvents: ->
     @$btnCancel.click =>
       @close()
-    @$btnSet.click =>
-      @set()
+    @$btnSet.click (e) =>
+      console.log e.target.className
+      @set('later-today')
+      @close()
 
-  open: (@id) ->
+  open: (@model) ->
     @app.showModal()
     @$root.show()
 
@@ -21,8 +23,8 @@ class @NotificationController
     @app.hideModal()
     @$root.hide()
 
-  set: ->
-    type = @$root.find('.notif-option input:checked').val()
+  set: (type) ->
+    # type = @$root.find('.notif-option input:checked').val()
     at = Date.now() + switch type
       when 'later-today'
         5 * 1000
@@ -34,7 +36,7 @@ class @NotificationController
     chrome.extension.getBackgroundPage().appendNotification(
       @id,
       at,
-      "title for #{@id}",
+      "#{@model.get('title')}",
       "message for #{@id}",
       =>
         @close()
