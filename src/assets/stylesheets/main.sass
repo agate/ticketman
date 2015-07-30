@@ -71,11 +71,11 @@ label
   color: white
 
 .btn-log-out
-  border: 2px solid #E0555F
-  color: #E0555F
+  border: 2px solid #FA6671
+  color: #FA6671
 
 .btn-log-out:hover
-  background-color: #E0555F
+  background-color: #FA6671
   color: white
 
 // Issues page styles
@@ -121,7 +121,7 @@ ul
 
 
 .repo h2
-  background-color: DimGrey
+  background-color: #919191
   color: white
   padding: 12px
   text-align: center
@@ -180,8 +180,8 @@ h2, h3
   color: white
 
 .fa-sign-out
-  background-color: #E0555F
-  border: 1px solid #E0555F
+  background-color: #FA6671
+  border: 1px solid #FA6671
   color: white
 
 .tab-section, .notifyme
@@ -192,13 +192,29 @@ $notif-line-height: 22px
 .notif-option, header
   height: $notif-line-height
 .section-notification
+  border-radius: 2px
   display: none
   $margins: ($bodyWidth - 300)/2
   position: absolute
   width: 300px
-  height: 200px
   background-color: #FFF
   margin: 200px $margins 0
   header
     background-color: #FFD014
-
+    font-size: 16px
+    text-align: center
+    padding: 6px 0
+    color: white
+    text-shadow: 1px 1px #949494
+  .btn
+    display: block
+    border-top: 1px solid LightGrey
+    color: DimGrey
+  .btn:hover
+    background-color: WhiteSmoke
+  .cancel
+    text-align: center
+  .cancel:hover
+    color: #FA6671
+    background-color: #FFF6F6
+    border-top: 1px solid #FA6671
