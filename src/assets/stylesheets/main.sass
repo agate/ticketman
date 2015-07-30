@@ -18,7 +18,7 @@ body
   font: normal normal normal 16px/1 Arial 
   text-align: center
 
-h1
+.section-login h1
   font-weight: normal
   text-align: center
   letter-spacing: 10px
@@ -74,12 +74,44 @@ label
 
 // Issues page styles
 
-.log-out
-  padding-right: 12px
+.header
+  padding: 12px
 
+  nav
+    border: 2px solid #1fa67a
+    display: inline-block
+    border-radius: 2px
+    cursor: pointer
+
+  h1
+    font-size: 16px
+    font-weight: normal
+    color: #1fa67a
+    display: inline-block
+    padding: 12px
+    margin: 0
+    transition: all 0.3s ease 0s
+    -moz-transition: all 0.3s ease 0s
+    -webkit-transition: all 0.3s ease 0s
+  
+  h1.selected, h1:hover
+    background-color: #1fa67a
+    color: white
+    
 ul
   list-style-type: none
-  padding: 10px 0
+  padding: 0
+
+.list-repo
+  margin: 0
+
+
+.repo h2
+  background-color: DimGrey
+  color: white
+  padding: 12px
+  text-align: center
+  margin: 0
 
 .issue
   padding: 6px 12px 0 12px

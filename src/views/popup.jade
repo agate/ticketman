@@ -5,6 +5,8 @@ html
     script(src="javascripts/all.min.js")
 
   body
+    
+
     button.notifyme Click Me To Show Up A Notification
 
     .screen.section-login
@@ -14,9 +16,15 @@ html
       .loader-54
 
     .screen.section-main
-      .log-out.pull-right
-        label.fa.fa-sign-out
-        button.btn.btn-log-out Log Out
+
+    .section-main
+      .header
+        .log-out.pull-right
+          label.fa.fa-sign-out
+          button.btn.btn-log-out Log Out
+        nav
+          h1.selected Issues
+          h1 Starred
 
       div.list-issue-type
         div.tab-section.created
