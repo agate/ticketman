@@ -76,7 +76,7 @@ class @StarredList
 
     $html = $(tmplFn TMPL, {})
     $issueListRoot = $html.find('.list-issues')
-    @$root.append $html
+    @$root.html $html
 
     for starred in coll
       model = @collection.findWhere({ id: starred.id })
