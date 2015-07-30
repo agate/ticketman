@@ -4,11 +4,12 @@ class @AuthController
     @registerEvents()
 
   initHTML: () ->
-    @$root = $('.section-login')
-    @$form  = @$root.find('form')
-    @$uname = @$root.find('input[name=username]').val('vinnie-pepi')
-    @$pass  = @$root.find('input[name=password]')
-    @$login = @$root.find('.btn-login')
+    @$root   = $('.section-login')
+    @$form   = @$root.find('form')
+    @$uname  = @$root.find('input[name=username]')
+    @$pass   = @$root.find('input[name=password]')
+    @$login  = @$root.find('.btn-login')
+    @$logout = $('.btn-log-out')
     
   chromeStorageTest: () ->
     chrome.storage.local.set({"randomness": {"level": 25 }})
@@ -21,6 +22,16 @@ class @AuthController
     @$login.click (e) =>
       e.preventDefault()
       @initOctokat()
+    @$logout.click (e) =>
+      e.preventDefault()
+      chrome.extension.getBackgroundPage().clearOctokat()
+      @clearForm()
+      @app.showLogin()
+      @$uname.focus()
+
+  clearForm: ->
+    @$uname.val('')
+    @$pass.val('')
 
   initOctokat: (uname, pass) ->
     uname = @$uname.val()

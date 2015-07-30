@@ -4,6 +4,8 @@ notifications = {}
 @notify = (opts) ->
   notifications[Date.now()] = opts
 
+@clearOctokat = =>
+  @octo = null
 @initOctokat = (params) =>
   @octo = new Octokat(params)
 
