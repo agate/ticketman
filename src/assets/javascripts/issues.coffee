@@ -12,7 +12,6 @@ else
 
   unsetReminder: () ->
 
-
 @IssueCollection = Backbone.Collection.extend
   initialize: (models, options) ->
     if options.octo? then @octo = options.octo

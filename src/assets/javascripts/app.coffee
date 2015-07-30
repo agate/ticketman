@@ -1,7 +1,7 @@
 class @App
   constructor: () ->
     @$sectionLogin = $('.section-login')
-    @$sectionMain = $('.section-main').hide()
+    @$sectionMain  = $('.section-main').hide()
     @authController = new AuthController(@)
     @initHTML()
 
@@ -29,5 +29,7 @@ class @App
 
     @assignedIssues.on 'update', () =>
       @showMain()
-      new IssueList(@assignedIssues)
+      $assigned = @$tabSections.filter('.assigned').show()
+      list = new IssueList($assigned, @assignedIssues)
+      list.render()
 
