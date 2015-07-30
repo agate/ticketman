@@ -38,7 +38,7 @@ class @NotificationController
       @id,
       at,
       "#{@model.get('title')}",
-      "<a href=\"#{link}\">#{link}</a>",
+      "#{link}",
       =>
         @close()
     )
