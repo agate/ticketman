@@ -12,7 +12,7 @@ class @IssueItem
     <li class="issue">
       <span class="issue-star fa fa-lg <%= starType %>" />
       <h3 class="issue-title">
-        <a href="<%= link %>" target="_blank">
+        <a class="issue-link" href="<%= link %>" target="_blank">
           <%= title %>
         </a>
       </h3>
@@ -42,6 +42,12 @@ class @IssueItem
   attachEvents: ($html) ->
     $star = $html.find('.issue-star')
     $notif = $html.find('.issue-notif')
+    $issueLink = $html.find('.issue-link')
+
+    $issueLink.click (e) =>
+      e.preventDefault()
+      chrome.tabs.create
+        url: @model.get('link')
 
     $star.click () =>
       if (@model.get('starred'))

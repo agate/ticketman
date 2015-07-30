@@ -33,11 +33,12 @@ class @NotificationController
       when 'later-this-week'
         60 * 1000
 
+    link = @model.get('link')
     chrome.extension.getBackgroundPage().appendNotification(
       @id,
       at,
       "#{@model.get('title')}",
-      '<a href="#{@model.get('link')}">#{@model.get('link')}</a>',
+      "<a href=\"#{link}\">#{link}</a>",
       =>
         @close()
     )
