@@ -3,15 +3,20 @@ class @App
     @$sectionLogin = $('.section-login')
     @$sectionMain = $('.section-main').hide()
     @authController = new AuthController(@)
+    @initHTML()
 
     $btnBack = $('button.back')
     $btnBack.click =>
       @showLogin()
     
+  initHTML: () ->
+    @$tabSections = $('.tab-section')
+
   showMain: () ->
     @$sectionLogin.hide()
     @$sectionMain.show()
 
+  
   showLoading: () ->
 
   showLogin: () ->
@@ -19,9 +24,10 @@ class @App
     @$sectionMain.hide()
 
   onLogin: (octo) ->
-    @coll = new IssueCollection [], { octo: octo }
-    @coll.fetch('assigned')
-    @coll.on 'update', () =>
+    @assignedIssues = new IssueCollection [], { octo: octo }
+    @assignedIssues.fetch('assigned')
+
+    @assignedIssues.on 'update', () =>
       @showMain()
-    window.coll = @coll
+      new IssueList(@assignedIssues)
 

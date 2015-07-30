@@ -3,7 +3,15 @@ if chrome.storage
 else
   storageStrategy = new Backbone.LocalStorage("IssueCollection")
 
-@IssueModel = Backbone.Model.extend()
+@IssueModel = Backbone.Model.extend
+  star:() ->
+
+  unstar: () ->
+
+  setReminder: (time) ->
+
+  unsetReminder: () ->
+
 
 @IssueCollection = Backbone.Collection.extend
   initialize: (models, options) ->
