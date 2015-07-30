@@ -4,9 +4,11 @@ class @App
     @authController = new AuthController(@)
     
   initHTML: () ->
-    @$sectionLogin = $('.section-login').hide()
-    @$sectionMain  = $('.section-main').hide()
-    @$tabSections = $('.tab-section')
+    @$sectionLogin = $('.section-login')
+    @$sectionMain  = $('.section-main')
+    @$sectionLoad  = $('.section-loading')
+    @$screens      = $('.screen').hide()
+    @$tabSections  = $('.tab-section')
 
     if @octo() then @onLogin() else @showLogin()
 
@@ -14,15 +16,20 @@ class @App
     chrome.extension.getBackgroundPage().octo
 
   showLogin: () ->
+    @$screens.hide()
     @$sectionLogin.show()
-    @$sectionMain.hide()
+    # @$sectionMain.hide()
 
   showMain: () ->
-    @$sectionLogin.hide()
+    # @$sectionLogin.hide()
+    @$screens.hide()
     @$sectionMain.show()
 
+  showLoading: () ->
+    @$screens.hide()
+    @$sectionLoad.show()
+
   onLogin: () ->
-    @showMain()
 
     @assignedIssues = new IssueCollection [], { octo: @octo() }
     @assignedIssues.fetch('assigned')
@@ -31,3 +38,4 @@ class @App
       $assigned = @$tabSections.filter('.assigned').show()
       list = new IssueList($assigned, @assignedIssues)
       list.render()
+      @showMain()

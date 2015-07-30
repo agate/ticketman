@@ -34,6 +34,7 @@ class @AuthController
     @$pass.val('')
 
   initOctokat: (uname, pass) ->
+    @app.showLoading()
     uname = @$uname.val()
     pass  = @$pass.val()
     chrome.extension.getBackgroundPage().initOctokat(
