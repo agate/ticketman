@@ -1,5 +1,14 @@
+tmplRe = /<%=\s*([^\s]*?)\s*%>/g
+tmplFn = (str, obj) ->
+  while (m = tmplRe.exec(str)) != null
+    replacee = m[0]
+    key = m[1]
+    if (obj[key]?)
+      str = str.replace(replacee, obj[key])
+  return str
+
 class @IssueItem
-  TMPL = _.template """
+  TMPL = """
     <span class="issue-star fa fa-lg <%= starType %>" />
     <h3 class="issue-title"><%= title %></h3>
     <div class="container-issue-details">
@@ -40,7 +49,7 @@ class @IssueItem
       title: @model.get('title')
       date: @dateDisplay()
       starType: starType
-    $html = $(TMPL(locals))
+    $html = $(tmplFn TMPL, locals)
     @attachEvents($html)
     @$root.append $html
     
@@ -49,7 +58,7 @@ class @IssueItem
 class @IssueList
   ISSUE_TYPE = 'assigned'
 
-  TMPL = _.template """
+  TMPL = """
     <ul class="list-repo">
       <li class="repo">
         <h2><%= repoName %></h2>
@@ -65,7 +74,7 @@ class @IssueList
     grouped = @collection.groupBy('repo')
     window.coll = @collection
     for repo, items of grouped
-      $html = $(TMPL({ repoName: repo }))
+      $html = $(tmplFn TMPL, { repoName: repo })
       $issueListRoot = $html.find('.list-issues')
       @$root.append $html
       items.forEach (item) =>
