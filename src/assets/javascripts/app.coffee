@@ -9,6 +9,7 @@ class @App
     @$sectionLoad  = $('.section-loading')
     @$sectionNotif = $('.section-notification')
     @$screens      = $('.screen').hide()
+    @$screenModal  = $('.screen-modal')
     @$tabSections  = $('.tab-section')
 
     if @octo() then @onLogin() else @showLogin()
@@ -16,8 +17,14 @@ class @App
   octo: () ->
     chrome.extension.getBackgroundPage().octo
 
-  getDim: () ->
-    console.log window
+  showModal: () ->
+    @$screenModal.height(document.documentElement.clientHeight)
+    @$screenModal.width(document.documentElement.clientWidth)
+    @$screenModal.show()
+
+  hideModal: () ->
+    @$screenModal.hide()
+
   showLogin: () ->
     @$screens.hide()
     @$sectionLogin.show()

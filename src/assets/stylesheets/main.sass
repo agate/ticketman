@@ -1,9 +1,10 @@
 // CSS
 
 @import url('fonts/OpenSans-Regular')
+$bodyWidth: 600px
 
 body
-  width: 600px
+  width: $bodyWidth
   font-family: 'Open Sans', Arial, sans-serif
   margin: 0
 
@@ -185,3 +186,19 @@ h2, h3
 
 .tab-section, .notifyme
   display: none
+
+
+$notif-line-height: 22px
+.notif-option, header
+  height: $notif-line-height
+.section-notification
+  display: none
+  $margins: ($bodyWidth - 300)/2
+  position: absolute
+  width: 300px
+  height: 200px
+  background-color: #FFF
+  margin: 200px $margins 0
+  header
+    background-color: #FFD014
+

@@ -6,25 +6,14 @@ html
 
   body
     button.notifyme Click Me To Show Up A Notification
-    .screen-modal.section-notification
+    .screen-modal
+    .section-notification
+      include notification
     .screen.section-login
       include login
     .screen.section-loading
       .loader-54
       
-      button.btn.notif-close
-      .notif-option
-        input(type="radio", name="notification-time", value="later")
-        span Later Today
-      .notif-option
-        input(type="radio", name="notification-time", value="later")
-        span Tomorrow
-      .notif-option
-        input(type="radio", name="notification-time", value="later")
-        span Later thiw Week
-      .notif-actions
-        button.btn Cancel
-        button.btn Set Alert
 
     .screen.section-main
       .header

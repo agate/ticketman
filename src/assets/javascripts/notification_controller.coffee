@@ -2,9 +2,9 @@ class @NotificationController
   constructor: (@$root, @app) ->
 
   open: (id) ->
-    @$root.height(document.documentElement.clientHeight)
-    @$root.width(document.documentElement.clientWidth)
+    @app.showModal()
     @$root.show()
 
   close: () ->
+    @app.hideModal()
     @$root.hide()
