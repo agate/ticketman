@@ -8,7 +8,6 @@
       id = @getStringId()
       if result[id]? and result[id].starred?
         @set('starred', result[id].starred)
-      console.log id
       @trigger('initialized', id)
 
   getStringId: () ->
@@ -28,7 +27,6 @@
 
 @IssueCollection = Backbone.Collection.extend
   initialize: (models, options) ->
-    console.log(options)
     if options.octo? then @octo = options.octo
     
     Backbone.Collection.prototype.initialize.call(@, models, options)

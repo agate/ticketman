@@ -15,13 +15,13 @@ class @IssueItem
       <div class="container-issue-details">
         <div class="container-right pull-right">
           <span class="date"><%= date %></span>
-          <span class="fa fa-calendar-o" />
+          <span class="issue-notif fa fa-calendar-o" />
         </div>
       </div>
     </li>
   """
 
-  constructor: (@$root, @model) ->
+  constructor: (@$root, @model, @nc) ->
 
   dateDisplay: () ->
     d = new Date @model.get('createdAt')
@@ -37,6 +37,7 @@ class @IssueItem
 
   attachEvents: ($html) ->
     $star = $html.find('.issue-star')
+    $notif = $html.find('.issue-notif')
 
     @model.once 'initialized', (id) =>
       console.log(id)
@@ -52,6 +53,9 @@ class @IssueItem
       else
         @star($star)
         @model.star()
+    console.log $notif
+    $notif.click () =>
+      @nc.open(@model.getStringId())
 
   render: () ->
     starType = if @model.get('star') then 'fa-star' else 'fa-star-o'
@@ -76,7 +80,7 @@ class @IssueList
     </ul>
   """
 
-  constructor: (@$root, @collection) ->
+  constructor: (@$root, @collection, @nc) ->
 
   render: () ->
     grouped = @collection.groupBy('repo')
@@ -86,6 +90,6 @@ class @IssueList
       @$root.append $html
       items.forEach (item) =>
         model = @collection.findWhere({ id: item.id })
-        issueItem = new IssueItem($issueListRoot, model)
+        issueItem = new IssueItem($issueListRoot, model, @nc)
         issueItem.render()
         

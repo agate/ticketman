@@ -7,6 +7,7 @@ class @App
     @$sectionLogin = $('.section-login')
     @$sectionMain  = $('.section-main')
     @$sectionLoad  = $('.section-loading')
+    @$sectionNotif = $('.section-notification')
     @$screens      = $('.screen').hide()
     @$tabSections  = $('.tab-section')
 
@@ -20,6 +21,10 @@ class @App
     @$sectionLogin.show()
     # @$sectionMain.hide()
 
+  showNotifications: () ->
+    @$screens.hide()
+    @$sectionNotif.show()
+
   showMain: () ->
     # @$sectionLogin.hide()
     @$screens.hide()
@@ -31,11 +36,12 @@ class @App
 
   onLogin: () ->
 
+    @notificationController = new NotificationController(@$sectionNotif, @)
     @assignedIssues = new IssueCollection [], { octo: @octo() }
     @assignedIssues.fetch('assigned')
 
     @assignedIssues.on 'update', () =>
       $assigned = @$tabSections.filter('.assigned').show()
-      list = new IssueList($assigned, @assignedIssues)
+      list = new IssueList($assigned, @assignedIssues, @notificationController)
       list.render()
       @showMain()
