@@ -36,7 +36,12 @@ class @App
   hideModal: () ->
     @$screenModal.hide()
 
-  showLogin: () ->
+  showLogin: (message=null) ->
+    $message = @$sectionLogin.find('.login-message')
+    if(message)
+      $message.html(message).show()
+    else
+      $message.html('').hide()
     @$screens.hide()
     @$sectionLogin.show()
 

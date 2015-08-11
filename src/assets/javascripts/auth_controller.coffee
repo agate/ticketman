@@ -37,8 +37,14 @@ class @AuthController
     @app.showLoading()
     uname = @$uname.val()
     pass  = @$pass.val()
-    chrome.extension.getBackgroundPage().initOctokat(
+    bg = chrome.extension.getBackgroundPage()
+    octo = bg.initOctokat(
       username: uname
       password: pass
     )
-    @app.onLogin()
+    octo.zen.read (err, message) =>
+      if (err)
+        @app.showLogin("Authorization Failed")
+        bg.clearOctokat()
+      else
+        @app.onLogin()

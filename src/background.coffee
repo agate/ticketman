@@ -17,6 +17,7 @@
 
 setNotifications = (notifications) ->
   @Storage.set 'notifications', notifications
+
 getNotifications = (cb) ->
   @Storage.get 'notifications', (res) ->
     notifications = res.notifications || {}
