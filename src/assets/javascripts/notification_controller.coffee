@@ -5,15 +5,12 @@ class @NotificationController
 
   initHTML: ->
     @$btnCancel = @$root.find('.btn.cancel')
-    @$btnSet = @$root.find('.notif-option')
 
   registerEvents: ->
     @$btnCancel.click =>
       @close()
-    @$btnSet.click (e) =>
-      console.log e.target.className
-      @set('later-today')
-      @close()
+    @$root.find('.btn.notif-option').click (e) =>
+      @set(e.target)
 
   open: (@model) ->
     @app.showModal()
@@ -23,22 +20,21 @@ class @NotificationController
     @app.hideModal()
     @$root.hide()
 
-  set: (type) ->
-    # type = @$root.find('.notif-option input:checked').val()
-    at = Date.now() + switch type
+  set: (target) ->
+    at = Date.now() + switch $(target).data('type')
       when 'later-today'
         5 * 1000
       when 'tomorrow'
         30 * 1000
-      when 'later-this-week'
+      when 'next-week'
         60 * 1000
-
     link = @model.get('link')
+
     chrome.extension.getBackgroundPage().appendNotification(
       @id,
       at,
       "#{@model.get('title')}",
-      "#{link}",
+      "<a href=\"#{@model.get('link')}\">#{@model.get('link')}</a>",
       =>
         @close()
     )
