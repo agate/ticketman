@@ -1,16 +1,17 @@
 class @App
-  constructor: () ->
+  constructor: ->
     @initHTML()
     @authController = new AuthController(@)
     @registerEvents()
-    
-  initHTML: () ->
+
+  initHTML: ->
     @$sectionLogin = $('.section-login')
     @$sectionMain  = $('.section-main')
     @$sectionLoad  = $('.section-loading')
     @$sectionNotif = $('.section-notification')
     @$screens      = $('.screen').hide()
     @$screenModal  = $('.screen-modal')
+    @$tabs         = $('nav .tab')
     @$tabSections  = $('.tab-section')
 
     if @octo()
@@ -20,20 +21,21 @@ class @App
       @showLogin()
 
   registerEvents: () ->
-    @$sectionMain.find('.tab-assigned').click (e) =>
-      @activateTab('assigned')
-    @$sectionMain.find('.tab-starred').click (e) =>
-      @activateTab('starred')
+    @$tabs.click (e) =>
+      @$tabs.removeClass('selected')
+      $tab = $(e.currentTarget)
+      $tab.addClass('selected')
+      @activateTab($tab.data('tab'))
 
-  octo: () ->
+  octo: ->
     chrome.extension.getBackgroundPage().octo
 
-  showModal: () ->
+  showModal: ->
     @$screenModal.height(document.documentElement.clientHeight)
     @$screenModal.width(document.documentElement.clientWidth)
     @$screenModal.show()
 
-  hideModal: () ->
+  hideModal: ->
     @$screenModal.hide()
 
   showLogin: (message=null) ->
@@ -63,7 +65,7 @@ class @App
       $active = @$tabSections.filter(".#{tabname}").show()
     return $active
 
-  onLogin: () ->
+  onLogin: ->
     @notificationController = new NotificationController(@$sectionNotif, @)
     @assignedIssues = new IssueCollection [], { octo: @octo() }
     @assignedIssues.fetch('assigned')
@@ -73,4 +75,3 @@ class @App
       list = new IssueList($assigned, @assignedIssues, @notificationController)
       list.render()
       @showMain()
-

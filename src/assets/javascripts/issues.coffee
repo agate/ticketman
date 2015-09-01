@@ -28,7 +28,7 @@
 @IssueCollection = Backbone.Collection.extend
   initialize: (models, options) ->
     if options.octo? then @octo = options.octo
-    
+
     Backbone.Collection.prototype.initialize.call(@, models, options)
 
   model: IssueModel
@@ -58,6 +58,3 @@
           models.push issueModel
           issueModel.on 'initialized', () ->
             onload(--count)
-
-        
-

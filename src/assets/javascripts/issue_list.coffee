@@ -110,7 +110,7 @@ class @IssueList
   constructor: (@$root, @collection, @nc) ->
 
   render: () ->
-    console.log @collection
+    console.debug @collection
     grouped = @collection.groupBy('repo')
     for repo, items of grouped
       $html = $(tmplFn TMPL, { repoName: repo })
@@ -120,4 +120,3 @@ class @IssueList
         model = @collection.findWhere({ id: item.id })
         issueItem = new IssueItem($issueListRoot, model, @nc)
         issueItem.render()
-        

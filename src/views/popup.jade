@@ -19,12 +19,13 @@ html
           label.fa.fa-sign-out
           button.btn.btn-log-out Log Out
         nav
-          h1.tab-assigned.selected 
-            i.fa.fa-bug 
+          h1.tab.assigned.selected(data-tab="assigned")
+            i.fa.fa-bug
             label Issues
-          h1.tab-starred
+          h1.tab.starred(data-tab="starred")
             i.fa.fa-star
             label Starred
+
       div.list-issue-type
         div.tab-section.created
         div.tab-section.assigned

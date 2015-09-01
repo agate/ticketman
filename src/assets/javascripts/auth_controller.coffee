@@ -10,11 +10,11 @@ class @AuthController
     @$pass   = @$root.find('input[name=password]')
     @$login  = @$root.find('.btn-login')
     @$logout = $('.btn-log-out')
-    
+
   chromeStorageTest: () ->
     chrome.storage.local.set({"randomness": {"level": 25 }})
     level = chrome.storage.local.get "randomness", (result) ->
-      console.log result
+      console.debug result
 
   registerEvents: () ->
     @$form.submit (e) =>
