@@ -23,15 +23,16 @@ class @NotificationController
   set: (target) ->
     at = Date.now() + switch $(target).data('type')
       when 'later-today'
-        5 * 1000
+        120 * 60 * 1000
       when 'tomorrow'
-        30 * 1000
+        24 * 60 * 1000
       when 'next-week'
-        60 * 1000
+        7* 24 * 60 * 1000
     link = @model.get('link')
+    id   = @model.get('id')
 
     chrome.extension.getBackgroundPage().appendNotification(
-      @id,
+      id,
       at,
       "#{@model.get('title')}",
       "<a href=\"#{@model.get('link')}\">#{@model.get('link')}</a>",

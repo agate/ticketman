@@ -7,6 +7,7 @@
   @octo = new Octokat(params)
 
 @appendNotification = (id, timestamp, title, message, cb) ->
+  console.log "notifications"
   getNotifications (notifications) ->
     notifications[id] =
       timestamp: timestamp,
@@ -16,6 +17,7 @@
     cb()
 
 setNotifications = (notifications) ->
+  console.log "set", notifications
   @Storage.set 'notifications', notifications
 
 getNotifications = (cb) ->
@@ -40,5 +42,5 @@ setInterval ->
       if now > notification.timestamp
         showNotification(notification.title, notification.message)
         delete notifications[id]
-    setNotifications(notifications)
+        setNotifications(notifications)
 , 1000
