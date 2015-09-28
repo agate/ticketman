@@ -54,6 +54,7 @@
             createdAt: result.createdAt
             updatedAt: result.updatedAt
             repo: result.repository.fullName
+            labels: result.labels
 
           models.push issueModel
           issueModel.on 'initialized', () ->

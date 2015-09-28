@@ -21,6 +21,7 @@ class @IssueItem
           <span class="date"><%= date %></span>
           <span class="issue-notif fa fa-calendar-o" />
         </div>
+        <div class="issue-labels"></div>
       </div>
     </li>
   """
@@ -68,6 +69,7 @@ class @IssueItem
       starType: starType
     $html = $(tmplFn TMPL, locals)
     @attachEvents($html)
+    new Labels($html.find('.issue-labels'), @model.get('labels'))
     @$root.append $html
 
 class @StarredList
