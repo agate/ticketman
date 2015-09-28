@@ -1,0 +1,13 @@
+#!/bin/bash
+
+DEST_PATH="`pwd`/dest"
+
+cd $DEST_PATH
+mkdir -p packed
+
+# ZIP
+zip -qr packed/ticketman.zip unpacked/*
+
+# CRX
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --pack-extension=$DEST_PATH/unpacked --pack-extension-key=$1
+mv unpacked.crx packed/ticketman.crx

@@ -14,7 +14,7 @@ var del = require('del');
 var PATHS = {
   images: {
     src: 'src/assets/images/**/*',
-    dest: 'dest/images'
+    dest: 'dest/unpacked/images'
   },
 
   scripts: {
@@ -36,7 +36,7 @@ var PATHS = {
     backgroundlib: [
       'bower_components/octokat/dist/octokat.js',
     ],
-    dest: 'dest/javascripts'
+    dest: 'dest/unpacked/javascripts'
   },
 
   styles: {
@@ -44,7 +44,7 @@ var PATHS = {
     lib: [
       'bower_components/font-awesome/css/font-awesome.css'
     ],
-    dest: 'dest/stylesheets'
+    dest: 'dest/unpacked/stylesheets'
   },
 
   fonts: {
@@ -53,17 +53,17 @@ var PATHS = {
       'src/assets/fonts/*'
       
     ],
-    dest: 'dest/fonts'
+    dest: 'dest/unpacked/fonts'
   },
 
   views: {
     src: 'src/views/**/*.jade',
-    dest: 'dest'
+    dest: 'dest/unpacked'
   },
 
   manifest: {
     src: 'src/manifest.json',
-    dest: 'dest'
+    dest: 'dest/unpacked'
   }
 };
 

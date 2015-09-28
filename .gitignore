@@ -4,4 +4,3 @@ bower_components
 *.swp
 .DS_Store
 .sass-cache
-*.crx
