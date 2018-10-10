@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var addsrc = require('gulp-add-src');
 var coffee = require('gulp-coffee');
 var sass = require('gulp-ruby-sass');
-var jade = require('gulp-jade');
+var pug = require('gulp-pug');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
@@ -57,7 +57,7 @@ var PATHS = {
   },
 
   views: {
-    src: 'src/views/**/*.jade',
+    src: 'src/views/**/*.pug',
     dest: 'dest/unpacked'
   },
 
@@ -116,7 +116,7 @@ gulp.task('views', function() {
 
   return gulp
   .src(PATHS.views.src)
-  .pipe(jade({ locals: YOUR_LOCALS }))
+  .pipe(pug({ locals: YOUR_LOCALS }))
   .pipe(gulp.dest(PATHS.views.dest));
 });
 
